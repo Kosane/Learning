@@ -1,0 +1,10 @@
+release/dictdialog.o
+release/errordialog.o
+release/mainwindow.o
+release/main.o
+release/successdialog.o
+release/qrc_resources.o
+release/moc_dictdialog.o
+release/moc_errordialog.o
+release/moc_mainwindow.o
+release/moc_successdialog.o

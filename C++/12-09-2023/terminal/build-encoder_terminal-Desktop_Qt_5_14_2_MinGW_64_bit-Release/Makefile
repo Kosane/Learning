@@ -248,6 +248,7 @@ Makefile: ../encoder_terminal/encoder_terminal.pro C:/Qt/Qt5.14.2/5.14.2/mingw73
 		C:/Qt/Qt5.14.2/5.14.2/mingw73_64/mkspecs/features/qt_config.prf \
 		C:/Qt/Qt5.14.2/5.14.2/mingw73_64/mkspecs/win32-g++/qmake.conf \
 		C:/Qt/Qt5.14.2/5.14.2/mingw73_64/mkspecs/features/spec_post.prf \
+		.qmake.stash \
 		C:/Qt/Qt5.14.2/5.14.2/mingw73_64/mkspecs/features/exclusive_builds.prf \
 		C:/Qt/Qt5.14.2/5.14.2/mingw73_64/mkspecs/features/toolchain.prf \
 		C:/Qt/Qt5.14.2/5.14.2/mingw73_64/mkspecs/features/default_pre.prf \
@@ -267,7 +268,6 @@ Makefile: ../encoder_terminal/encoder_terminal.pro C:/Qt/Qt5.14.2/5.14.2/mingw73
 		C:/Qt/Qt5.14.2/5.14.2/mingw73_64/mkspecs/features/yacc.prf \
 		C:/Qt/Qt5.14.2/5.14.2/mingw73_64/mkspecs/features/lex.prf \
 		../encoder_terminal/encoder_terminal.pro \
-		.qmake.stash \
 		C:/Qt/Qt5.14.2/5.14.2/mingw73_64/mkspecs/features/build_pass.prf
 	$(QMAKE) -o Makefile ..\encoder_terminal\encoder_terminal.pro -spec win32-g++ "CONFIG+=qtquickcompiler"
 C:/Qt/Qt5.14.2/5.14.2/mingw73_64/mkspecs/features/spec_pre.prf:
@@ -448,6 +448,7 @@ C:/Qt/Qt5.14.2/5.14.2/mingw73_64/mkspecs/features/qt_functions.prf:
 C:/Qt/Qt5.14.2/5.14.2/mingw73_64/mkspecs/features/qt_config.prf:
 C:/Qt/Qt5.14.2/5.14.2/mingw73_64/mkspecs/win32-g++/qmake.conf:
 C:/Qt/Qt5.14.2/5.14.2/mingw73_64/mkspecs/features/spec_post.prf:
+.qmake.stash:
 C:/Qt/Qt5.14.2/5.14.2/mingw73_64/mkspecs/features/exclusive_builds.prf:
 C:/Qt/Qt5.14.2/5.14.2/mingw73_64/mkspecs/features/toolchain.prf:
 C:/Qt/Qt5.14.2/5.14.2/mingw73_64/mkspecs/features/default_pre.prf:
@@ -467,7 +468,6 @@ C:/Qt/Qt5.14.2/5.14.2/mingw73_64/mkspecs/features/exceptions.prf:
 C:/Qt/Qt5.14.2/5.14.2/mingw73_64/mkspecs/features/yacc.prf:
 C:/Qt/Qt5.14.2/5.14.2/mingw73_64/mkspecs/features/lex.prf:
 ../encoder_terminal/encoder_terminal.pro:
-.qmake.stash:
 C:/Qt/Qt5.14.2/5.14.2/mingw73_64/mkspecs/features/build_pass.prf:
 qmake: FORCE
 	@$(QMAKE) -o Makefile ..\encoder_terminal\encoder_terminal.pro -spec win32-g++ "CONFIG+=qtquickcompiler"

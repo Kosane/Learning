@@ -1,0 +1,65 @@
+name: documentation
+
+on:
+  push:
+    branches:
+    - master
+
+
+env:
+  DOXYGEN_VERSION: 1.8.16
+
+jobs:
+  build:
+    name: documentation
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v1
+      with:
+        submodules: true
+
+    - name: Download Doxygen
+      id: download
+      shell: cmake -P {0}
+      run: |
+        set(doxygen_version $ENV{DOXYGEN_VERSION})
+        set(doxygen_url "https://sourceforge.net/projects/doxygen/files/rel-${doxygen_version}/doxygen-${doxygen_version}.linux.bin.tar.gz/download")
+        set(doxygen_dir "doxygen-${doxygen_version}/bin")
+        file(DOWNLOAD "${doxygen_url}" ./doxygen.tar.gz SHOW_PROGRESS)
+        execute_process(COMMAND ${CMAKE_COMMAND} -E tar xvf ./doxygen.tar.gz)
+        file(TO_CMAKE_PATH "$ENV{GITHUB_WORKSPACE}/${doxygen_dir}" doxygen_dir)
+        message("::set-output name=doxygen_dir::${doxygen_dir}")
+    - name: Configure
+      id: configure
+      run: |
+        set -eu
+        PATH=${{ steps.download.outputs.doxygen_dir }}:${PATH}
+        cmake -S . -B build
+    - name: Build
+      id: build
+      run: |
+        set -eu
+        PATH=${{ steps.download.outputs.doxygen_dir }}:${PATH}
+        cmake --build build --target dynamic_bitset_docs
+        echo "::set-output name=html_doc_dir::${GITHUB_WORKSPACE}/build/docs/html"
+    - name: Deploy
+      id: deploy
+      run: |
+        set -eu
+        mkdir tmp-git
+        cd tmp-git
+        git init
+        git config user.name "${GITHUB_ACTOR}"
+        git config user.email "${GITHUB_ACTOR}@bots.github.com"
+        git remote add origin "https://x-access-token:${{ secrets.DEPLOY_TOKEN }}@github.com/${GITHUB_REPOSITORY}.git"
+        git fetch origin
+        git checkout -t origin/gh-pages
+        rm -rf ./*
+        cp -r "${{ steps.build.outputs.html_doc_dir }}/." .
+        git add -A .
+        if git commit -m "Update"; then
+            git push
+            echo "documentation updated"
+        else
+            echo "no changes to commit"
+        fi

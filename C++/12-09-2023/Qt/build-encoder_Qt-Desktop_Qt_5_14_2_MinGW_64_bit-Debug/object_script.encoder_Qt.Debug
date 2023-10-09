@@ -1,0 +1,10 @@
+debug/dictdialog.o
+debug/errordialog.o
+debug/mainwindow.o
+debug/main.o
+debug/successdialog.o
+debug/qrc_resources.o
+debug/moc_dictdialog.o
+debug/moc_errordialog.o
+debug/moc_mainwindow.o
+debug/moc_successdialog.o
